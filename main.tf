@@ -1,8 +1,13 @@
+provider "azuread" {
+  subscription_id = "${var.subscription_id}"
+}
+
 resource "azuread_application" "app" {
   name = "${var.name}"
 }
 
 resource "azurerm_role_assignment" "role" {
+  count                = "${var.scope_id == "" ? 0 : 1}"
   scope                = "${var.scope_id}"
   role_definition_name = "Contributor"
   principal_id         = "${azuread_service_principal.sp.id}"
