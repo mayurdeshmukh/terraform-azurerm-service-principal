@@ -3,7 +3,8 @@ provider "azuread" {
 }
 
 resource "azuread_application" "app" {
-  name = "${var.name}"
+  name                       = "${var.name}"
+  available_to_other_tenants = "${var.available_to_other_tenants}"
 
   dynamic "required_resource_access" {
     for_each = "${var.required_resource_access}"
