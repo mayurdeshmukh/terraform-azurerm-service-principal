@@ -4,6 +4,20 @@ provider "azuread" {
 
 resource "azuread_application" "app" {
   name = "${var.name}"
+
+  dynamic "required_resource_access" {
+    for_each = "${var.required_resource_access}"
+    content {
+      resource_app_id = "${required_resource_access.value.resource_app_id}"
+      dynamic "resource_access" {
+        for_each = "${required_resource_access.value.resource_access}"
+        content {
+          id   = "${resource_access.value.id}"
+          type = "${resource_access.value.type}"
+        }
+      }
+    }
+  }
 }
 
 resource "azurerm_role_assignment" "role" {
