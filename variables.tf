@@ -21,3 +21,9 @@ variable "required_resource_access" {
   }))
   default = []
 }
+
+variable "available_to_other_tenants" {
+  description = "Whether the App Registration should be available to other tenants."
+  type        = bool
+  default     = null
+}
