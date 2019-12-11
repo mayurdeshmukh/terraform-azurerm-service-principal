@@ -34,9 +34,9 @@ resource "random_string" "password" {
 }
 
 resource "azuread_application_password" "password" {
-  application_id = azuread_application.app.id
-  value          = random_string.password.result
-  end_date       = "2099-01-01T01:02:03Z"
+  application_object_id = azuread_application.app.id
+  value                 = random_string.password.result
+  end_date              = "2099-01-01T01:02:03Z"
 }
 
 resource "azuread_service_principal" "sp" {
