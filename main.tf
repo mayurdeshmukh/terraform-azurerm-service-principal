@@ -22,8 +22,8 @@ resource "azuread_application" "app" {
 }
 
 resource "azurerm_role_assignment" "role" {
-  count                = var.scope_id == "" ? 0 : 1
-  scope                = var.scope_id
+  count                = length(var.scope_ids)
+  scope                = element(var.scope_ids, count.index)
   role_definition_name = "Contributor"
   principal_id         = azuread_service_principal.sp.id
 }

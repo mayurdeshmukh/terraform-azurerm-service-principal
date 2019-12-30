@@ -1,11 +1,6 @@
 variable "name" {
   description = "Service principal name."
 }
-variable "scope_id" {
-  description = "The ID of the resource the service principal should have access to."
-  default     = ""
-}
-
 variable "subscription_id" {
   description = "The Subscription ID the Application Registration should be created under."
 }
@@ -21,9 +16,12 @@ variable "required_resource_access" {
   }))
   default = []
 }
-
 variable "available_to_other_tenants" {
   description = "Whether the App Registration should be available to other tenants."
   type        = bool
   default     = null
+}
+variable "scope_ids" {
+  description = "The IDs of the resources the service principal should have access to."
+  default     = []
 }
