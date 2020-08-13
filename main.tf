@@ -1,7 +1,3 @@
-provider "azuread" {
-  subscription_id = var.subscription_id
-}
-
 resource "azuread_application" "app" {
   name                       = var.name
   available_to_other_tenants = var.available_to_other_tenants
